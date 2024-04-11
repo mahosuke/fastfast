@@ -31,6 +31,8 @@ async def update_task(task_id: int, task_body: task_schema.TaskCreate):
     return task_schema.TaskCreateResponse(id=task_id, **task_body.dict())
 
 
+
+
 from fastapi import APIRouter, Depends, HTTPException
 
 
@@ -51,4 +53,3 @@ async def delete_task(task_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Task not found")
 
     return await task_crud.delete_task(db, original=task)
-
